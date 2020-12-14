@@ -10,8 +10,10 @@
     <?php // Vars
         $text = 'Ti che te tacchet i tacc’, tacchem i tacc’! Chi?! Mi, taccat’ i tacc’ a ti, che te tacchet i tacc’. taccheti ti i tó tacc’, ti che te tacchet i tacc’.';
         $length_text = strlen($text);
-        $cesure = $_GET["censure"];
-        $text_censored = str_replace($cesure, '***', $text);
+        $censure = $_GET["censure"];
+        $text_censored = str_replace($censure, '***', $text);
+        $word_censored_pos = strpos($text, $censure);
+        $text_censored_upper = ucwords($text_censored);
     ?>
 
     <!-- TEXT UNCENSORED -->
@@ -21,11 +23,23 @@
     </div>
 
     <!-- TEXT CENSURED -->
-    <a href="?censure=tacc">Clicca qui per censurare</a>
+    <strong>
+        <a href="?censure=tacc">Clicca qui per censurare</a>
+    </strong>
 
     <div>
-        <h2> <?php echo $text_censored ?> </h2>
+        <h2> <?php echo $text_censored_upper ?> </h2>
     </div>
+
+    <p> 
+    La posizione del primo 
+    <strong>
+    <?php
+    echo $censure . ' è ';
+    echo $word_censored_pos;
+    ?> 
+    </strong>
+    </p>
 
 </body>
 </html>
