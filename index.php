@@ -7,29 +7,25 @@
 </head>
 <body>
 
-    <?php
-        $text = 'Ti che te tacchet i tacc’, tacchem i tacc’! Chi?! Mi, taccat’ i tacc’ a ti, che te tacchet i tacc’. taccheti ti i tó tacc’, ti che te tacchet i tacc’.'
+    <?php // Vars
+        $text = 'Ti che te tacchet i tacc’, tacchem i tacc’! Chi?! Mi, taccat’ i tacc’ a ti, che te tacchet i tacc’. taccheti ti i tó tacc’, ti che te tacchet i tacc’.';
+        $length_text = strlen($text);
+        $cesure = $_GET["censure"];
+        $text_censored = str_replace($cesure, '***', $text);
     ?>
 
-    <h1> 
-    <?php // Stampo text
-    echo $text; 
-    ?> 
-    </h1>
+    <!-- TEXT UNCENSORED -->
+    <div> 
+        <h3><?php echo $text ?></h3>
+        <h4><?php echo 'Lunghezza del testo: ' . $length_text ?></h4>
+    </div>
 
-    <h3>
-    <?php // Stampo la lunghezza di text
-    echo 'Lunghezza del testo: ' . strlen($text); 
-    ?> 
-    </h3>
+    <!-- TEXT CENSURED -->
+    <a href="?censure=tacc">Clicca qui per censurare</a>
 
-    <a href="?censure=tacc"> Censura tutti i Tacc </a>
-
-    <h2>
-    <?php // Sostituzione di tacc con ***
-     echo str_replace($_GET["censure"], '***', $text);
-    ?>
-    </h2>
+    <div>
+        <h2> <?php echo $text_censored ?> </h2>
+    </div>
 
 </body>
 </html>
